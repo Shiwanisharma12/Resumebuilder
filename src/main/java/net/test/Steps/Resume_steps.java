@@ -36,7 +36,7 @@ public class Resume_steps extends Resumepage {
         pagess.windowSwitch();
         pagess.email(emails);
         pagess.next();
-        waitABit(5000);
+
 
     }
 

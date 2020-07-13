@@ -7,15 +7,22 @@ Feature: Automating resume builder application
 #    And enter successive domain "Shiwani.sharma@successive.tech"id
 #    And  user will enter password
 
-   Scenario: user will login by valid creds
+#
+#    Given user is on resume builder loginpage
+#    When user choose login with gmail
+#    And  enter successive domain "Shiwani.sharma@successive.tech"id
+#    And  user will enter password
+
+  Background:
     Given user is on resume builder loginpage
     When user choose login with gmail
     And  enter successive domain "Shiwani.sharma@successive.tech"id
     And  user will enter password
+    When  User is on create resume page
 
 
   Scenario Outline: Verify that user is not able to submit form with invalid phone no.
-    When  User is on create resume page
+
     And  user enter all the field's data in form excluding phone
     And   user will enter first project sections details
     And   user enter "<phone_no>" in the field
@@ -23,6 +30,7 @@ Feature: Automating resume builder application
     Then user wont be able to submit the form and verify client side validation
     And   click on logut button
     Examples:
+
       | phone_no     |
       | 00           |
       | 123456       |

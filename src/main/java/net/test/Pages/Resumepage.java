@@ -17,8 +17,9 @@ public class Resumepage extends PageObject {
 
 
 
-
     Config config = ConfigLoader.load();
+
+   // int time=config.getInt("Element_Load_Time");
 
     @FindBy(xpath = "//a[@class='btn btn-google btn-user btn-block']")
     WebElementFacade login;
@@ -32,7 +33,7 @@ public class Resumepage extends PageObject {
     @FindBy(xpath = "//input[@type='password']")
     WebElementFacade Password;
 
-    @FindBy(xpath = "//*[@id='content']/div/div/div[1]/div/a")
+    @FindBy(xpath = "//i[@class='fas fa-plus fa-sm text-white-50']")
     WebElementFacade createResumes;
 
     @FindBy(xpath = "//input[@id='title']")
@@ -197,13 +198,15 @@ public class Resumepage extends PageObject {
     public void next() {
         // js.executeScript("arguments[0].click();", Next);
         waitFor(Next).waitUntilClickable().withTimeoutOf(60, TimeUnit.SECONDS).click();
-        waitABit(5000);
 
 
     }
 
     public void Password() {
+
         waitFor(Password).waitUntilVisible().withTimeoutOf(60, TimeUnit.SECONDS).sendKeys("Lovelyjhansi@123");
+
+        config.getInt("Element_Load_Time");
     }
 
     public void windowSwitch() {
@@ -226,12 +229,13 @@ public class Resumepage extends PageObject {
         }
 
 
-    public void createResume() {
 //        String Parent=getDriver().getWindowHandle();
 //        getDriver().switchTo().window(Parent);
-        windowSwitch();
-        waitABit(10000);
-        waitFor(createResumes).waitUntilClickable().withTimeoutOf(120, TimeUnit.SECONDS).click();
+     public void createResume()
+     {
+         windowSwitch();
+         waitABit(10000);
+         createResumes.waitUntilEnabled().withTimeoutOf(120, TimeUnit.SECONDS).click();
 
     }
 
