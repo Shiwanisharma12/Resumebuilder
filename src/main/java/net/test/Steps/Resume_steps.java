@@ -24,7 +24,7 @@ public class Resume_steps extends Resumepage {
 
 
     @And("^user will enter password$")
-    public void userWillEnterPassword() {
+    public void  userWillEnterPassword() {
         pagess.Password();
         pagess.next();
 
