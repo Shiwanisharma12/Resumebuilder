@@ -1,11 +1,22 @@
 package net.test.Steps;
+
+import com.typesafe.config.Config;
+import cucumber.api.PendingException;
+import net.serenitybdd.core.pages.WebElementFacade;
 import net.test.Pages.Resumepage;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import cucumber.api.java.en.Given;
+import net.test.utilities.ConfigLoader;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 public class Resume_steps extends Resumepage {
+    Config config = ConfigLoader.load();
+
 
     Resumepage pagess;
 
@@ -22,26 +33,54 @@ public class Resume_steps extends Resumepage {
         pagess.loginwithgoogle();
     }
 
-
-    @And("^user will enter password$")
-    public void  userWillEnterPassword() {
-        pagess.Password();
-        pagess.next();
-
-    }
+//
+//    @And("^user will enter password$")
+//    public void userWillEnterPassword() {
+//      pagess.Password();
+//
+//    }
 
 
     @And("^enter successive domain \"([^\"]*)\"id$")
-    public void enterSuccessiveDomainId(String emails) {
-        pagess.windowSwitch();
-        pagess.email(emails);
-        pagess.next();
+    public void enterSuccessiveDomainId(String emails) throws InterruptedException {
+      String myid= config.getString("My_id");
+//       pagess.loader();
+//        pagess.windowSwitch();
+//
+//        pagess.email(myid);
+//        pagess.next();
+    }
 
+    @And("^enter successive domain My id$")
+    public void enterSuccessiveDomainMyId() throws InterruptedException {
+        String myid= config.getString("My_id");
+
+        pagess.loader();
+        pagess.windowSwitch();
+        pagess.email(myid);
+    }
+
+    @And("^enter password of domain id$")
+    public void enterPasswordOfDomainId()
+    {
+       String PWD= config.getString("Password");
+        pagess.password(PWD);
 
     }
 
+
+    @And("^Login with valid email \"([^\"]*)\"$")
+    public void loginWithValidEmail(String arg0) throws InterruptedException {
+        pagess.loader();
+        pagess.windowSwitch();
+        pagess.email(arg0);
+           }
+
     @Given("^user will click on create resume button$")
-    public void userWillClickOnCreateResumeButton() {
+    public void userWillClickOnCreateResumeButton() throws InterruptedException {
+
+        pagess.loader();
+        pagess.windowSwitch();
         pagess.createResume();
 
     }
@@ -98,7 +137,9 @@ public class Resume_steps extends Resumepage {
     }
 
     @Given("^User is on create resume page$")
-    public void userIsOnCreateResumePage() {
+    public void userIsOnCreateResumePage() throws InterruptedException {
+        pagess.loader();
+        pagess.windowSwitch();
         pagess.createResume();
     }
 
@@ -142,12 +183,17 @@ public class Resume_steps extends Resumepage {
 
 
     @And("^user is already on create resume screen and user click on profile icon$")
-    public void userIsAlreadyOnCreateResumeScreenAndUserClickOnProfileIcon() {
-        pagess.profileicon();
+    public void userIsAlreadyOnCreateResumeScreenAndUserClickOnProfileIcon() throws InterruptedException {
+
+
+        pagess.loader();
+        pagess.windowSwitch();
+        pagess.createResume();
     }
 
     @And("^click on logut button$")
-    public void clickOnLogutButton() {
+    public void clickOnLogutButton() throws InterruptedException {
+
         pagess.profileicon();
         pagess.logout();
 
@@ -155,7 +201,9 @@ public class Resume_steps extends Resumepage {
 
 
     @Given("^user is on dashboard screen and click logout$")
-    public void userIsOnDashboardScreenAndClickLogout() {
+    public void userIsOnDashboardScreenAndClickLogout() throws InterruptedException {
+        pagess.loader();
+        pagess.windowSwitch();
         pagess.profileicon();
         pagess.logout();
     }
@@ -217,7 +265,8 @@ public class Resume_steps extends Resumepage {
 
 
     @And("^user click on edit button$")
-    public void userClickOnEditButton() {
+    public void userClickOnEditButton() throws InterruptedException {
+
         pagess.editclick();
     }
 
@@ -245,4 +294,75 @@ public class Resume_steps extends Resumepage {
         pagess.addnewbtn();
     }
 
+    @When("^user will click on submit button without filling fields$")
+    public void userWillClickOnSubmitButtonWithoutFillingFields() {
+        pagess.submit();
+    }
+
+    @Then("^user will verify the error of each mendatory field$")
+    public void userWillVerifyTheErrorOfEachMendatoryField() {
+        pagess.errorOnmendatoryFields();
+
+    }
+
+
+    @When("^user will fill the form with \"([^\"]*)\" And  Verify the client side error of link fields$")
+    public void userWillFillTheFormWithAndVerifyTheClientSideErrorOfLinkFields(String InvalidLink)
+    {
+        pagess.linkedfield(InvalidLink);
+       pagess.githubfield(InvalidLink);
+       pagess.bitbucketfield(InvalidLink);
+       pagess.stackOverflowfield(InvalidLink);
+       pagess.hackerRankfield(InvalidLink);
+    }
+
+    @When("^enter successive domain \"([^\"]*)\"id in email field$")
+    public void enterSuccessiveDomainIdInEmailField(String email) throws InterruptedException {
+        pagess.loader();
+        pagess.windowSwitch();
+        pagess.Onlyemail(email);
+    }
+
+
+    @Given("^Enter any resource \"([^\"]*)\" and verify Resume By title$")
+    public void enterAnyResourceAndVerifyResumeByTitle(String arg0) throws InterruptedException {
+        pagess.EmailIdInSearchBar(arg0);
+
+    }
+
+    @Then("^User should be able to download the Resume$")
+    public void userShouldBeAbleToDownloadTheResume()
+    {
+        pagess.DownloadResume();
+
+    }
+
+    @Then("^Verify the view feature$")
+    public void verifyTheViewFeature()
+    {
+        pagess.ViewResume();
+
+    }
+
+    @Then("^verify search bar of \"([^\"]*)\" and \"([^\"]*)\" and \"([^\"]*)\"$")
+    public void verifySearchBarOfAndAnd(String arg0, String arg1, String arg2)
+    {
+        pagess.SearchByTitleAndTechnology(arg0, arg1, arg2);
+
+    }
+
+    @Then("^verify creation and modification date$")
+    public void verifyCreationAndModificationDate()
+    {
+        pagess.Date();
+
+
+    }
+
+    @Given("^Click on the edit icon and Edit \"([^\"]*)\" and then submit$")
+    public void clickOnTheEditIconAndEditAndThenSubmit(String arg0)
+    {
+        pagess.EditResume(arg0);
+
+    }
 }

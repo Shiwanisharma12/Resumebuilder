@@ -1,33 +1,50 @@
 Feature: Automate tabular form scenarios
 
-Scenario Outline: Verify that user is not able to submit form with invalid phone no.
-Given user is on resume builder loginpage
-When user choose login with gmail
-And enter successive domain "Shiwani.sharma@successive.tech"id
-And  user will enter password
-When  User is on create resume page
-And  user enter all the field's data in form excluding phone
-And   user will enter first project sections details
-And   user enter "<phone_no>" in the field
-And  user click on submit button
-Then user wont be able to submit the form and verify client side validation
-And   click on logut button
-Examples:
-
-| phone_no     |
-| 00           |
-| 123456       |
-| dwjwdjp      |
-| @#$%^&**&*&* |
+  Background: user will login
+    Given user is on resume builder loginpage
+    When user choose login with gmail
 
 
-Scenario Outline: User will login to the application with invalid creds
-Given user is on resume builder loginpage
-When user choose login with gmail
-And enter successive domain "<Email>"id
-Examples:
+  Scenario Outline: Verify that user is not able to submit form with invalid phone no.
 
-| Email         |
-| Shiwani@123   |
-| Vaishali@123  |
-| wedwwejpo.com |
+    When enter successive domain My id
+    And enter password of domain id
+    When  User is on create resume page
+    And   user enter "<phone_no>" in the field
+    And  user click on submit button
+    Then user wont be able to submit the form and verify client side validation
+    And   click on logut button
+    Examples:
+      | phone_no     |
+      | 00           |
+      | 123456       |
+      | +++++++      |
+      | eeeeeeeeeeee |
+
+   Scenario Outline: User will login to the application with invalid creds
+     When  enter successive domain "<Email>"id in email field
+
+     Examples:
+       |Email          |
+       | Shiwani@123   |
+       | Vaishali@123  |
+       | wedwwejpo.com |
+
+
+
+  Scenario Outline: If user enters Invalid links in all the link fields  wich does not follow the standards ,client side error will be shown to user.(protocol+ domain)
+
+    When enter successive domain My id
+    And enter password of domain id
+    When  User is on create resume page
+    When user will fill the form with "<Invalid links>" And  Verify the client side error of link fields
+    And   click on logut button
+
+    Examples:
+      | Invalid links                  |
+      | Shiwani.sharma@successive.tech |
+      | https://KEODJEOEODJDJ          |
+      | 12345.com                      |
+      | Shivani5111998@gmail.com       |
+      | www.https://4rj4orj.com        |
+
