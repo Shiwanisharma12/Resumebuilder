@@ -33,23 +33,6 @@ public class Resume_steps extends Resumepage {
         pagess.loginwithgoogle();
     }
 
-//
-//    @And("^user will enter password$")
-//    public void userWillEnterPassword() {
-//      pagess.Password();
-//
-//    }
-
-
-    @And("^enter successive domain \"([^\"]*)\"id$")
-    public void enterSuccessiveDomainId(String emails) throws InterruptedException {
-      String myid= config.getString("My_id");
-//       pagess.loader();
-//        pagess.windowSwitch();
-//
-//        pagess.email(myid);
-//        pagess.next();
-    }
 
     @And("^enter successive domain My id$")
     public void enterSuccessiveDomainMyId() throws InterruptedException {

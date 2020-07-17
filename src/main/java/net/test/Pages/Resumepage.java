@@ -18,7 +18,8 @@ public class Resumepage extends PageObject {
 
 
     Config config = ConfigLoader.load();
-//    int holdon = Integer.parseInt( config.getString("Element_Load_Time"));
+
+    int wait = Integer.parseInt(config.getString("Element_Load_Time"));
 
 
     @FindBy(xpath = "//a[@class='btn btn-google btn-user btn-block']")
@@ -222,7 +223,7 @@ public class Resumepage extends PageObject {
     WebElementFacade technologyTitleVerify;
     @FindBy(xpath = "//img[@class='img-profile rounded-circle']")
     WebElementFacade profileIcon;
-//    @FindBy(xpath = "//a[@href='/account/logout']")
+    //    @FindBy(xpath = "//a[@href='/account/logout']")
 //    WebElementFacade logout;
     @FindBy(xpath = "//*[@id='dataTable']/tbody/tr[1]/td[2]")
     WebElementFacade creationDateVerify;
@@ -237,6 +238,7 @@ public class Resumepage extends PageObject {
 
 
     public void navigatetourl() {
+        waitABit(wait);
         openUrl(config.getString("loginTestUrl"));
         getDriver().manage().window().maximize();
 
@@ -245,10 +247,7 @@ public class Resumepage extends PageObject {
 
     public void loginwithgoogle() {
 
-        waitFor(login).waitUntilVisible().click();
-
-//          int wait = Integer.parseInt( config.getString("Element_Load_Time"));
-//          wait
+        waitFor(login).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).click();
 
 
     }
@@ -256,7 +255,7 @@ public class Resumepage extends PageObject {
     public void email(String emails) {
 
         if (EMAIL.isVisible()) {
-            waitFor(EMAIL).waitUntilVisible().withTimeoutOf(120, TimeUnit.SECONDS).sendKeys(emails);
+            waitFor(EMAIL).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).sendKeys(emails);
             next();
         }
 
@@ -264,10 +263,6 @@ public class Resumepage extends PageObject {
     }
 
     public void next() {
-
-//        WebElement element = getDriver().findElement(By.xpath("//span[text()='Next']"));
-//        JavascriptExecutor executor = (JavascriptExecutor) getDriver();
-//        executor.executeScript("arguments[0].click()", element);
 
         next.click();
     }
@@ -280,143 +275,112 @@ public class Resumepage extends PageObject {
             getDriver().switchTo().window(ws);
         }
 
-
-//        String parentWindow = getDriver().getWindowHandle();
-//        System.out.println("Parent Window ID is : " + parentWindow);
-//
-//        Set<String> allWindow = getDriver().getWindowHandles();
-//
-//        int count = allWindow.size();
-//        System.out.println("Total Window : " + count);
-//
-//        for (String child : allWindow) {
-//            if (!parentWindow.equalsIgnoreCase(child)) {
-//                getDriver().switchTo().window(child);
-//                getDriver().manage().window().maximize();
-//            }
-//        }
-//        getDriver().switchTo().window(parentWindow);
-//    }
     }
-
-//    public void loginWithvalidEmail( String validEmail)
-//    {
-//        WebElement status = getDriver().findElement(By.xpath("//input[@type='email']"));
-//        if (status.getSize())
-//        {
-//            email(validEmail);
-//            next();
-//            Password();
-//        }
-
 
     public void createResume() {
 
-        waitFor(createResumes).waitUntilVisible().withTimeoutOf(60, TimeUnit.SECONDS).click();
+        waitFor(createResumes).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).click();
 
-//        WebElement element = getDriver().findElement(By.xpath("//*[@id='content']/div/div/div[1]/div/a"));
-//        JavascriptExecutor executor = (JavascriptExecutor) getDriver();
-//        executor.executeScript("arguments[0].click()", element);
     }
 
 
     public void title() {
-        waitFor(Title).waitUntilVisible().withTimeoutOf(60, TimeUnit.SECONDS).sendKeys("QUALITY ANALYST1");
+        waitFor(Title).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).sendKeys("QUALITY ANALYST1");
     }
 
     public void headline() {
-        waitFor(Headline).waitUntilVisible().withTimeoutOf(60, TimeUnit.SECONDS).sendKeys("Headlineee");
+        waitFor(Headline).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).sendKeys("Headlineee");
     }
 
 
     public void phone() {
-        waitFor(Phone).waitUntilVisible().withTimeoutOf(60, TimeUnit.SECONDS).sendKeys("0987654321");
+        waitFor(Phone).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).sendKeys("0987654321");
     }
 
 
     public void totalExperience() {
-        waitFor(totalExperienceInMonths).waitUntilVisible().withTimeoutOf(60, TimeUnit.SECONDS).sendKeys("5");
+        waitFor(totalExperienceInMonths).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).sendKeys("5");
     }
 
 
     public void linkedIn() {
 
-        waitFor(LinkedIn).waitUntilVisible().withTimeoutOf(60, TimeUnit.SECONDS).sendKeys("https://www.linkedin.com/in/vaishali-jain-8a7854171");
+        waitFor(LinkedIn).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).sendKeys("https://www.linkedin.com/in/vaishali-jain-8a7854171");
 
 
     }
 
     public void github() {
-        waitFor(githublink).waitUntilVisible().withTimeoutOf(60, TimeUnit.SECONDS).sendKeys("https://www.linkedin.com/in/vaishali-jain-8a7854171");
+        waitFor(githublink).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).sendKeys("https://www.linkedin.com/in/vaishali-jain-8a7854171");
     }
 
 
     public void bitbucket() {
-        waitFor(Bitbucket).waitUntilVisible().withTimeoutOf(60, TimeUnit.SECONDS).sendKeys("https://www.linkedin.com/in/vaishali-jain-8a7854171");
+        waitFor(Bitbucket).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).sendKeys("https://www.linkedin.com/in/vaishali-jain-8a7854171");
     }
 
     public void stackOverflow() {
-        waitFor(stacklink).waitUntilVisible().withTimeoutOf(60, TimeUnit.SECONDS).sendKeys("https://www.linkedin.com/in/vaishali-jain-8a7854171");
+        waitFor(stacklink).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).sendKeys("https://www.linkedin.com/in/vaishali-jain-8a7854171");
     }
 
     public void hackerRank() {
-        waitFor(HackerRank).waitUntilVisible().withTimeoutOf(60, TimeUnit.SECONDS).sendKeys("https://www.linkedin.com/in/vaishali-jain-8a7854171");
+        waitFor(HackerRank).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).sendKeys("https://www.linkedin.com/in/vaishali-jain-8a7854171");
 
         ((JavascriptExecutor) getDriver()).executeScript(("scroll(0, 500);"));
     }
 
     public void technologies() {
-        waitFor(Technologies).waitUntilVisible().withTimeoutOf(60, TimeUnit.SECONDS).sendKeys("c,java,python");
+        waitFor(Technologies).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).sendKeys("c,java,python");
         Technologies.sendKeys(Keys.ENTER);
 
     }
 
     public void database() {
-        waitFor(Database).waitUntilVisible().withTimeoutOf(60, TimeUnit.SECONDS).sendKeys("DATABASE");
+        waitFor(Database).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).sendKeys("DATABASE");
         Database.sendKeys(Keys.ENTER);
     }
 
     public void frameworks() {
-        waitFor(Framework).waitUntilVisible().withTimeoutOf(60, TimeUnit.SECONDS).sendKeys("FRAMEWORKS");
+        waitFor(Framework).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).sendKeys("FRAMEWORKS");
         Framework.sendKeys(Keys.ENTER);
     }
 
     public void os() {
 
-        waitFor(OS).waitUntilVisible().withTimeoutOf(60, TimeUnit.SECONDS).sendKeys("WINDOWS", "LINUX", "ANDROID");
+        waitFor(OS).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).sendKeys("WINDOWS", "LINUX", "ANDROID");
         OS.sendKeys(Keys.ENTER);
 
     }
 
     public void thirdPartylibraries() {
-        waitFor(thirdparty).waitUntilVisible().withTimeoutOf(60, TimeUnit.SECONDS).sendKeys("third party");
+        waitFor(thirdparty).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).sendKeys("third party");
         thirdparty.sendKeys(Keys.ENTER);
     }
 
     public void rewardsAndrecognition() {
-        waitFor(rewards).waitUntilVisible().withTimeoutOf(60, TimeUnit.SECONDS).sendKeys("REWARDS");
+        waitFor(rewards).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).sendKeys("REWARDS");
 
     }
 
     public void certifications() {
 
 
-        waitFor(selectcertificate).waitUntilVisible().withTimeoutOf(60, TimeUnit.SECONDS).sendKeys("certifications");
+        waitFor(selectcertificate).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).sendKeys("certifications");
     }
 
 
     public void thoughtLeadership() {
-        waitFor(leadership).waitUntilVisible().withTimeoutOf(60, TimeUnit.SECONDS).sendKeys("Team leader");
+        waitFor(leadership).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).sendKeys("Team leader");
     }
 
 
     public void summary() {
-        waitFor(Summary).waitUntilVisible().withTimeoutOf(60, TimeUnit.SECONDS).sendKeys("I have been in successive for last 10 months");
+        waitFor(Summary).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).sendKeys("I have been in successive for last 10 months");
     }
 
 
     public void projectName() {
-        waitFor(project1).waitUntilVisible().withTimeoutOf(60, TimeUnit.SECONDS).sendKeys("Office and dragons");
+        waitFor(project1).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).sendKeys("Office and dragons");
     }
 
 
@@ -429,80 +393,81 @@ public class Resumepage extends PageObject {
 
     public void projectDomain() {
 
-        waitFor(domain).waitUntilVisible().withTimeoutOf(60, TimeUnit.SECONDS).sendKeys("QUALITY ASSURANCE");
+        waitFor(domain).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).sendKeys("QUALITY ASSURANCE");
     }
 
     public void teamSize() {
-        waitFor(teamsize1).waitUntilVisible().withTimeoutOf(60, TimeUnit.SECONDS).sendKeys("5");
+        waitFor(teamsize1).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).sendKeys("5");
     }
 
     public void projectDatabases() {
 
-        waitFor(database1).waitUntilVisible().withTimeoutOf(60, TimeUnit.SECONDS).sendKeys("DATABASES2");
+        waitFor(database1).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).sendKeys("DATABASES2");
     }
 
 
     public void projectFramework() {
-        waitFor(framework1).waitUntilVisible().withTimeoutOf(60, TimeUnit.SECONDS).sendKeys("frameworks");
+        waitFor(framework1).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).sendKeys("frameworks");
         framework1.sendKeys(Keys.ENTER);
 
     }
 
 
     public void managementTools() {
-        waitFor(PMTOOL).waitUntilVisible().withTimeoutOf(60, TimeUnit.SECONDS).sendKeys("Management tools");
+        waitFor(PMTOOL).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).sendKeys("Management tools");
     }
 
 
     public void duration() {
-        waitFor(duration).waitUntilVisible().withTimeoutOf(60, TimeUnit.SECONDS).sendKeys("10");
+        waitFor(duration).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).sendKeys("10");
     }
 
     public void modulesDeveloped() {
-        waitFor(modules).waitUntilVisible().withTimeoutOf(60, TimeUnit.SECONDS).sendKeys("modules");
+        waitFor(modules).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).sendKeys("modules");
     }
 
 
     public void extensionsUsed() {
-        waitFor(extension).waitUntilVisible().withTimeoutOf(60, TimeUnit.SECONDS).sendKeys("Extension used");
+        waitFor(extension).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).sendKeys("Extension used");
     }
 
 
     public void projectTechnology() {
-        waitFor(tech1).waitUntilVisible().withTimeoutOf(60, TimeUnit.SECONDS).sendKeys("c,java,python");
+        waitFor(tech1).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).sendKeys("c,java,python");
         tech1.sendKeys(Keys.ENTER);
 
     }
 
 
     public void projectThirtparty() {
-        waitFor(projectthirdparty).waitUntilVisible().withTimeoutOf(60, TimeUnit.SECONDS).sendKeys("projectthirdparty");
+        waitFor(projectthirdparty).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).sendKeys("projectthirdparty");
     }
 
 
     public void description() {
-        waitFor(descriptions).waitUntilVisible().withTimeoutOf(60, TimeUnit.SECONDS).sendKeys("No description for now");
+        waitFor(descriptions).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).sendKeys("No description for now");
     }
 
 
     public void roles() {
-        waitFor(roles1).waitUntilVisible().withTimeoutOf(60, TimeUnit.SECONDS).sendKeys("Team lead");
+        waitFor(roles1).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).sendKeys("Team lead");
     }
 
-    public void submit() {
-        waitFor(Submit).waitUntilVisible().withTimeoutOf(10, TimeUnit.SECONDS).click();
+    public void submit()
+    {
+        waitFor(Submit).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).click();
 
     }
 
     public void verifyResume() {
-        String firstRow = waitFor(firstResume).getText();
-        Assert.assertEquals(firstRow, "QUALITY ANALYST1");
+        String firstRow = waitFor(firstResume).getText().trim();
+        Assert.assertEquals(firstRow, "QUALITY ANALYST1".trim());
         System.out.println("Resume verified");
 
     }
 
     public void remove() {
-        waitFor(remove).waitUntilVisible().withTimeoutOf(10, TimeUnit.SECONDS).click();
+        waitFor(remove).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).click();
         ((JavascriptExecutor) getDriver()).executeScript(("scroll(0, 500);"));
 
 
@@ -518,12 +483,12 @@ public class Resumepage extends PageObject {
 
     public void profileicon() throws InterruptedException {
 
-        waitFor(profile).waitUntilVisible().withTimeoutOf(10, TimeUnit.SECONDS).click();
+        waitFor(profile).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).click();
 
     }
 
     public void logout() {
-        waitFor(logout).waitUntilVisible().withTimeoutOf(10, TimeUnit.SECONDS).click();
+        waitFor(logout).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).click();
         getDriver().quit();
 
 
@@ -531,12 +496,11 @@ public class Resumepage extends PageObject {
 
 
     public void addProject() {
-        waitFor(addProject).waitUntilVisible().withTimeoutOf(10, TimeUnit.SECONDS).click();
+        waitFor(addProject).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).click();
 
     }
 
     public void verifyProjectsection() {
-        waitABit(5000);
 
         newProject.waitUntilPresent().isDisplayed();
         waitFor(newProjectType).waitUntilPresent().isDisplayed();
@@ -546,7 +510,7 @@ public class Resumepage extends PageObject {
 
 
     public void Invalidphone(String phone_no) {
-        waitFor(Phone).waitUntilVisible().withTimeoutOf(60, TimeUnit.SECONDS).sendKeys(phone_no);
+        waitFor(Phone).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).sendKeys(phone_no);
 
     }
 
@@ -557,24 +521,24 @@ public class Resumepage extends PageObject {
     }
 
     public void view() {
-        waitFor(view).waitUntilVisible().withTimeoutOf(10, TimeUnit.SECONDS).isVisible();
+        waitFor(view).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).isVisible();
 
     }
 
 
     public void download() {
-        waitFor(download).waitUntilVisible().withTimeoutOf(10, TimeUnit.SECONDS).isVisible();
+        waitFor(download).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).isVisible();
 
     }
 
     public void edit() {
-        waitFor(edit).waitUntilVisible().withTimeoutOf(10, TimeUnit.SECONDS).isVisible();
+        waitFor(edit).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).isVisible();
 
     }
 
     public void loader() throws InterruptedException {
-        withTimeoutOf(20, TimeUnit.SECONDS).waitForAbsenceOf(passwordBtnLocator);
-        withTimeoutOf(20, TimeUnit.SECONDS).waitForAbsenceOf(popupTExt);
+        withTimeoutOf(wait, TimeUnit.MILLISECONDS).waitForAbsenceOf(passwordBtnLocator);
+        withTimeoutOf(wait, TimeUnit.MILLISECONDS).waitForAbsenceOf(popupTExt);
         Thread.sleep(3000);
     }
 
@@ -582,45 +546,45 @@ public class Resumepage extends PageObject {
 
         loader();
         windowSwitch();
-        waitABit(3000);
-        waitFor(edit).waitUntilVisible().withTimeoutOf(30, TimeUnit.SECONDS).click();
+        waitABit(wait);
+        waitFor(edit).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).click();
 
     }
 
     public void submitAndview() {
         ((JavascriptExecutor) getDriver()).executeScript(("scroll(0, 500);"));
-        waitFor(saveandview).waitUntilVisible().withTimeoutOf(20, TimeUnit.SECONDS).isVisible();
+        waitFor(saveandview).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).isVisible();
 
     }
 
     public void submitdisplay() {
-        waitFor(Submit).waitUntilVisible().withTimeoutOf(10, TimeUnit.SECONDS).isVisible();
+        waitFor(Submit).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).isVisible();
 
     }
 
     public void submitAndviewclick() {
         waitABit(5000);
-        waitFor(saveandview).waitUntilVisible().withTimeoutOf(10, TimeUnit.SECONDS).click();
+        waitFor(saveandview).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).click();
 
     }
 
     public void downloadOneditPage() {
-        waitFor(downloadresume).waitUntilVisible().withTimeoutOf(20, TimeUnit.SECONDS).isVisible();
+        waitFor(downloadresume).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).isVisible();
 
     }
 
     public void editOneditPage() {
-        waitFor(editresume).waitUntilVisible().withTimeoutOf(10, TimeUnit.SECONDS).isVisible();
+        waitFor(editresume).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).isVisible();
 
     }
 
     public void removebtn() {
-        waitFor(remove).waitUntilVisible().withTimeoutOf(10, TimeUnit.SECONDS).isVisible();
+        waitFor(remove).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).isVisible();
 
     }
 
     public void addnewbtn() {
-        waitFor(addProject).waitUntilVisible().withTimeoutOf(10, TimeUnit.SECONDS).isVisible();
+        waitFor(addProject).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).isVisible();
 
 
     }
@@ -652,7 +616,7 @@ public class Resumepage extends PageObject {
         if ((database1.getText().trim().isEmpty())) {
 
             String color = waitFor(database1).getCssValue("color");
-            Assert.assertEquals("rgba(110, 112, 126, 1)", color);
+            Assert.assertEquals("rgba(110, 112, 126, 1)",color);
         }
         if ((framework1.getText().trim().isEmpty())) {
 
@@ -727,7 +691,7 @@ public class Resumepage extends PageObject {
 //                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
 //                "A-Z]{2,7}$";
 //        System.out.println( emailRegex.matches(invalidLink));
-        waitFor(LinkedIn).waitUntilVisible().withTimeoutOf(10, TimeUnit.SECONDS).sendKeys(invalidLink);
+        waitFor(LinkedIn).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).sendKeys(invalidLink);
         String color = waitFor(LinkedIn).getCssValue("color");
         Assert.assertEquals("rgba(110, 112, 126, 1)", color);
     }
@@ -735,47 +699,47 @@ public class Resumepage extends PageObject {
 
     public void githubfield(String invalidLink) {
 
-        waitFor(githublink).waitUntilVisible().withTimeoutOf(10, TimeUnit.SECONDS).sendKeys(invalidLink);
+        waitFor(githublink).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).sendKeys(invalidLink);
         String color = waitFor(githublink).getCssValue("color");
         Assert.assertEquals("rgba(110, 112, 126, 1)", color);
     }
 
     public void bitbucketfield(String invalidLink) {
-        waitFor(Bitbucket).waitUntilVisible().withTimeoutOf(10, TimeUnit.SECONDS).sendKeys(invalidLink);
+        waitFor(Bitbucket).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).sendKeys(invalidLink);
         String color = waitFor(Bitbucket).getCssValue("color");
         Assert.assertEquals("rgba(110, 112, 126, 1)", color);
     }
 
     public void stackOverflowfield(String invalidLink) {
 
-        waitFor(stacklink).waitUntilVisible().withTimeoutOf(10, TimeUnit.SECONDS).sendKeys(invalidLink);
+        waitFor(stacklink).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).sendKeys(invalidLink);
         String color = waitFor(stacklink).getCssValue("color");
         Assert.assertEquals("rgba(110, 112, 126, 1)", color);
     }
 
     public void hackerRankfield(String invalidLink) {
-        waitFor(HackerRank).waitUntilVisible().withTimeoutOf(10, TimeUnit.SECONDS).sendKeys(invalidLink);
+        waitFor(HackerRank).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).sendKeys(invalidLink);
         String color = waitFor(HackerRank).getCssValue("color");
         Assert.assertEquals("rgba(110, 112, 126, 1)", color);
     }
 
     public void Onlyemail(String email) {
-        waitFor(EMAIL).waitUntilVisible().withTimeoutOf(120, TimeUnit.SECONDS).sendKeys(email);
+        waitFor(EMAIL).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).sendKeys(email);
         next();
         getDriver().quit();
 
     }
 
     public void password(String PWD) {
-        waitFor(Password).waitUntilVisible().withTimeoutOf(60, TimeUnit.SECONDS).sendKeys(PWD);
+        waitFor(Password).waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).sendKeys(PWD);
         next1.click();
     }
 
     public void EmailIdInSearchBar(String arg0) throws InterruptedException {
-       loader();
+        loader();
         windowSwitch();
-        userSearch.withTimeoutOf(10, TimeUnit.SECONDS).waitUntilVisible().sendKeys(arg0); //For the user who does not have any record.
-        selectFromDropdown1.withTimeoutOf(10, TimeUnit.SECONDS).click();
+        userSearch.withTimeoutOf(wait, TimeUnit.MILLISECONDS).waitUntilVisible().sendKeys(arg0); //For the user who does not have any record.
+        selectFromDropdown1.withTimeoutOf(wait, TimeUnit.MILLISECONDS).click();
 
         if (verifyMessage.isDisplayed()) {
             System.out.println("Message verified.");
@@ -783,8 +747,9 @@ public class Resumepage extends PageObject {
             System.out.println("No message found.");
 
         userSearch.clear();
-        userSearch.withTimeoutOf(10, TimeUnit.SECONDS).sendKeys(arg0); //For the existing user with resume.
-        selectFromDropdown.waitUntilVisible().click();
+        userSearch.withTimeoutOf(wait, TimeUnit.MILLISECONDS).sendKeys(arg0); //For the existing user with resume.
+        waitABit(wait);
+        selectFromDropdown.waitUntilVisible().withTimeoutOf(wait, TimeUnit.MILLISECONDS).click();
         if (verifyByTitle1.isDisplayed())
             System.out.println("Resume1 Present");
         else
@@ -795,18 +760,16 @@ public class Resumepage extends PageObject {
             System.out.println("Resume2 Not present");
     }
 
-    public void DownloadResume()
-    {
-        downloadResume.withTimeoutOf(10, TimeUnit.SECONDS).click(); //Click on Download Resume button.
+    public void DownloadResume() {
+        downloadResume.withTimeoutOf(wait, TimeUnit.MILLISECONDS).click(); //Click on Download Resume button.
 
     }
 
-    public void ViewResume()
-    {
+    public void ViewResume() {
         windowSwitch();
-        viewResumeFeature.withTimeoutOf(10, TimeUnit.SECONDS).click(); //Click on view resume icon.
+        viewResumeFeature.withTimeoutOf(wait, TimeUnit.MILLISECONDS).click(); //Click on view resume icon.
         windowSwitch();
-        downloadThisResume.withTimeoutOf(30, TimeUnit.SECONDS).click(); //Click on Download Resume button of view resume page.
+        downloadThisResume.withTimeoutOf(wait, TimeUnit.MILLISECONDS).click(); //Click on Download Resume button of view resume page.
         resumeRefreshButton.click(); //Click on the Resumes button from the left navigation bar.
     }
 
@@ -826,41 +789,35 @@ public class Resumepage extends PageObject {
         selectFromSuggestions.click();
         searchIcon.click();
         String row = waitFor(technologyTitleVerify).getText();
-        waitABit(2000);
+        waitABit(wait);
         Assert.assertEquals(row, "QUALITY ANALYST1");
         System.out.println("Technology title verified"); //verifying the resume we get from technology search.
-         // config.getString("Element_Load_Time");
+        // config.getString("Element_Load_Time");
 
     }
 
-    public void Date()
-    {
+    public void Date() {
         String creationDate = waitFor(creationDateVerify).getText();
-        Assert.assertEquals(creationDate, "2020/07/16");
+        Assert.assertEquals(creationDate, "2020/07/17");
         System.out.println("Creation Date verified");
         String modificationDate = waitFor(modifyDate).getText();
-        Assert.assertEquals(modificationDate, "2020/07/16");
+        Assert.assertEquals(modificationDate, "2020/07/17");
         System.out.println("Modification Date verified");
 
 
     }
 
-    public void EditResume(String arg0)
-    {
-        editResume.withTimeoutOf(10, TimeUnit.SECONDS).click(); //Clicking on edit resume icon.
-        waitABit(3000);
+    public void EditResume(String arg0) {
+        editResume.withTimeoutOf(wait, TimeUnit.MILLISECONDS).click(); //Clicking on edit resume icon.
+        waitABit(wait);
         editFirstName.clear(); //clear the already existing name from the text name.
-        editFirstName.withTimeoutOf(10, TimeUnit.SECONDS).sendKeys(arg0); //editing the new name.
+        editFirstName.withTimeoutOf(wait, TimeUnit.MILLISECONDS).sendKeys(arg0); //editing the new name.
         JavascriptExecutor jse = (JavascriptExecutor) getDriver(); //js executor is used for scrolling the window.
         jse.executeScript("window.scrollBy(0,5000)");
-        submit.withTimeoutOf(10, TimeUnit.SECONDS).click();
-       waitABit(3000);
-         windowSwitch();
-//        profileIcon.withTimeoutOf(10, TimeUnit.SECONDS).click(); //click on profile icon
-//        waitABit(3000);
-//        logout.waitUntilVisible().click(); //click on logout
-//        windowSwitch();
-        waitABit(3000);
+        submit.withTimeoutOf(wait, TimeUnit.MILLISECONDS).click();
+        waitABit(wait);
+        windowSwitch();
+        waitABit(wait);
 
     }
 }
